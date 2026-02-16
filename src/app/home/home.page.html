@@ -1,0 +1,54 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>
+      Data Mahasiswa
+    </ion-title>
+
+    <!-- Tombol Tambah di Header -->
+    <ion-buttons slot="end">
+      <ion-button routerLink="/tambah-mhs">
+        Tambah Mahasiswa
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <ion-item *ngFor="let mhs of dataMahasiswa">
+
+      <!-- Klik label saja untuk ke detail -->
+      <ion-label [routerLink]="['/detail', mhs.id]" detail="true">
+        <h2>{{ mhs.nama }}</h2>
+        <p>Prodi: {{ mhs.jurusan }}</p>
+      </ion-label>
+
+      <!-- Tombol Edit -->
+      <ion-button 
+        fill="clear" 
+        color="primary" 
+        (click)="editData(mhs); $event.stopPropagation()">
+        <ion-icon name="create"></ion-icon>
+      </ion-button>
+
+      <!-- Tombol Hapus -->
+      <ion-button 
+        fill="clear" 
+        color="danger" 
+        (click)="konfirmasiHapus(mhs.id); $event.stopPropagation()">
+        <ion-icon name="trash"></ion-icon>
+      </ion-button>
+
+    </ion-item>
+  </ion-list>
+
+  <!-- Floating Button -->
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button routerLink="/tambah-mhs">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>
